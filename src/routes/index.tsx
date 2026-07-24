@@ -122,7 +122,7 @@ const services = [
     name: "Yellow Peel",
     desc: "Advanced chemical peel that targets pigmentation, melasma and dullness for visibly brighter skin.",
     tags: ["Pigmentation", "Brightening", "Peel"],
-    img: "https://www.dtanique.com/img/yellow-peel.jpeg",
+    img: "https://www.dtanique.com/images/treatments/yellow-peel.jpeg",
   },
 ];
 
