@@ -11,6 +11,16 @@ import offerLaserHairRemoval from "@/assets/offers/laser-hair-removal-offer.jpeg
 import lhrPoster from "@/assets/lhr-offer-poster.jpeg";
 import hydraPoster from "@/assets/hydrafacial-offer-poster.jpeg";
 import { supabase } from "@/integrations/supabase/client";
+import laserHairRemovalImg from "@/assets/service/laser-hair-removal.jpeg";
+import acneImg from "@/assets/service/acne.jpeg";
+import koreanGlassImg from "@/assets/service/korean-glass.jpeg";
+import bbGlowImg from "@/assets/service/bb-glow.jpeg";
+import eyebrowMicrobladingImg from "@/assets/service/eyebrow-microblading.jpeg";
+import facePrpImg from "@/assets/service/face-prp.jpeg";
+import co2LaserImg from "@/assets/service/co2-laser.jpeg";
+import lipBlushingImg from "@/assets/service/lip-blushing.jpeg";
+import microNeedlingImg from "@/assets/service/micro-needling.jpeg";
+import yellowPeelImg from "@/assets/service/yellow-peel.jpeg";
 
 const currentHydrafacialOffer = `${offerHydrafacial}?v=20260601-current`;
 
@@ -45,75 +55,74 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
 const services = [
   {
     icon: "⚡",
     name: "Laser Hair Removal",
     desc: "Permanent, pain-minimized laser hair removal using advanced diode technology. Safe for all skin tones. Most popular treatment in South Bengaluru.",
     tags: ["Full Body", "Face", "Brazilian", "Underarms"],
-    img: "assets/laser-hair-removal.jpeg",
+    img: laserHairRemovalImg,
   },
   {
     icon: "✨",
     name: "Acne Treatments",
     desc: "Targeted solutions for acne, pigmentation, tanning & dullness. Expert consultations with Senior Dermatologist Team and evidence-based protocols that deliver visible results.",
     tags: ["Acne", "Pigmentation", "Glass Skin", "Yellow Peel"],
-    img: "assets/acne.jpeg",
+    img: acneImg,
   },
   {
     icon: "💫",
     name: "Korean Glass Skin",
     desc: "Achieve the trending porcelain-glow complexion with our bespoke multi-step Korean skin protocol. Hydration, brightening & a mirror-like finish.",
     tags: ["Glow Facial", "Hydration", "Brightening"],
-    img: "assets/korean-glass.jpeg",
+    img: koreanGlassImg,
   },
   {
     icon: "🎨",
     name: "BB Glow Treatment",
-    desc: "Semi-permanent foundation effect that evens skin tone, covers blemishes and delivers a natural glow — with results lasting up to months.",
+    desc: "Semi-permanent foundation effect that evens skin tone, covers blemishes and delivers a natural glow.",
     tags: ["Semi-Permanent", "Tone Evening", "Glow"],
-    img: "assets/bb-glow.jpeg",
+    img: bbGlowImg,
   },
   {
     icon: "👁️",
     name: "Eyebrow Microblading",
-    desc: "Precision eyebrow microblading, lip blushing and cosmetic tattooing by expert artists. Wake up beautiful, every day.",
+    desc: "Precision eyebrow microblading, lip blushing and cosmetic tattooing by expert artists.",
     tags: ["Microblading", "Lip Blushing", "Eyeliner"],
-    img: "assets/eyebrow-microblading.jpeg",
+    img: eyebrowMicrobladingImg,
   },
   {
     icon: "💉",
     name: "Face PRP",
-    desc: "Platelet-rich plasma therapy for hair loss and skin rejuvenation. Also offering meso-therapy, anti-ageing treatments and bespoke skin booster injections.",
+    desc: "Platelet-rich plasma therapy for hair loss and skin rejuvenation.",
     tags: ["PRP", "Hair Loss", "Anti-Ageing"],
-    img: "assets/face-prp.jpeg",
+    img: facePrpImg,
   },
   {
     icon: "🌟",
     name: "CO2 Laser",
-    desc: "Fractional CO2 laser resurfacing for scars, wrinkles, and uneven texture. Stimulates collagen for firmer, smoother skin.",
+    desc: "Fractional CO2 laser resurfacing for scars, wrinkles and uneven texture.",
     tags: ["Resurfacing", "Scars", "Anti-Ageing"],
-    img: "assets/c02-laser.jpeg",
+    img: co2LaserImg,
   },
   {
     icon: "💋",
     name: "Lip Blushing",
-    desc: "Semi-permanent lip tinting that enhances natural color and shape for a soft, blushed pout that lasts.",
+    desc: "Semi-permanent lip tinting that enhances natural colour and shape.",
     tags: ["Semi-Permanent", "Lip Tint", "Definition"],
-    img: "assets/lip-blushing.jpeg",
+    img: lipBlushingImg,
   },
   {
     icon: "🪡",
     name: "Micro Needling",
-    desc: "Collagen-induction therapy that improves skin texture, fine lines, scars and overall radiance.",
+    desc: "Collagen-induction therapy that improves skin texture, fine lines, scars and radiance.",
     tags: ["Collagen", "Texture", "Glow"],
-    img: "assets/micro-needling.jpeg",
+    img: microNeedlingImg,
   },
   {
     icon: "💧",
     name: "HydraFacial",
-    desc: "A medical-grade 3-step facial that cleanses, exfoliates and deeply hydrates using patented vortex technology. Painless, no-downtime treatment that infuses antioxidants, peptides and hyaluronic acid for an instant red-carpet glow.",
+    desc: "A medical-grade 3-step facial that cleanses, exfoliates and deeply hydrates using patented vortex technology.",
     tags: ["Hydration", "Deep Cleanse", "Instant Glow", "No Downtime"],
     img: hydrafacialImg,
   },
@@ -122,7 +131,7 @@ const services = [
     name: "Yellow Peel",
     desc: "Advanced chemical peel that targets pigmentation, melasma and dullness for visibly brighter skin.",
     tags: ["Pigmentation", "Brightening", "Peel"],
-    img: "assets/yellow-peel.jpeg",
+    img: yellowPeelImg,
   },
 ];
 
