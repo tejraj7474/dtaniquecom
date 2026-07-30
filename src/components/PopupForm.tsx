@@ -58,111 +58,67 @@ export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
   };
 
 
+const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault();
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  if (loading) return;
 
-    e.preventDefault();
+  setLoading(true);
 
+  try {
+    // 1. Save lead in Supabase
+    const { error } = await supabase.from("leads").insert({
+      name: form.name,
+      phone: form.phone,
+      email: form.email || null,
+      concern: form.service,
+      source: "Popup Form",
+    });
 
-    if (loading) return;
+    if (error) {
+      throw error;
+    }
 
+    // 2. Send email using Resend API
+    console.log("Calling:", "/api/-send-mail");
 
-    setLoading(true);
+    const mailResponse = await fetch("/api/-send-mail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        service: form.service,
+        message: form.message,
+      }),
+    });
 
+    console.log("Status:", mailResponse.status);
 
-    try {
+    if (!mailResponse.ok) {
+      const text = await mailResponse.text();
+      console.error("API Error:", text);
+      throw new Error(text);
+    }
 
+    const mailResult = await mailResponse.json();
+    console.log("Mail Result:", mailResult);
 
-      // 1. Save lead in Supabase
+    if (mailResult.status !== "success") {
+      throw new Error(mailResult.message || "Mail sending failed.");
+    }
 
-      const { error } = await supabase
-        .from("leads")
-        .insert({
+    // 3. Show success popup
+    setSubmitted(true);
 
-          name: form.name,
-
-          phone: form.phone,
-
-          email: form.email || null,
-
-          concern: form.service,
-
-          source: "Popup Form",
-
-        });
-
-
-
-      if (error) {
-
-        throw error;
-
-      }
-
-
-
-      // 2. Send email using Resend API
-
-      const mailResponse = await fetch(
-
-        "/api/send-mail",
-
-        {
-
-          method: "POST",
-
-          headers: {
-
-            "Content-Type": "application/json",
-
-          },
-
-
-          body: JSON.stringify({
-
-            name: form.name,
-
-            phone: form.phone,
-
-            email: form.email,
-
-            service: form.service,
-
-            message: form.message,
-
-          }),
-
-        }
-
-      );
-
-
-
-      const mailResult = await mailResponse.json();
-
-
-
-      if (mailResult.status !== "success") {
-
-        console.log("Mail Error:", mailResult.message);
-
-      }
-
-
-
-      // 3. Success popup
-
-      setSubmitted(true);
-
-
-
-      // 4. WhatsApp Redirect
-
-      const whatsappMessage = encodeURIComponent(
-
-        `Hi D-Tanique!
+    // 4. Open WhatsApp
+    const whatsappMessage = encodeURIComponent(
+      `Hi D-Tanique!
 
 Name: ${form.name}
 
@@ -173,64 +129,28 @@ Email: ${form.email}
 Treatment: ${form.service}
 
 Message: ${form.message}`
+    );
 
-      );
+    window.open(
+      `https://wa.me/918884448906?text=${whatsappMessage}`,
+      "_blank"
+    );
 
-
-      window.open(
-
-        `https://wa.me/918884448906?text=${whatsappMessage}`,
-
-        "_blank"
-
-      );
-
-
-
-
-      // Reset form
-
-      setForm({
-
-        name: "",
-
-        phone: "",
-
-        email: "",
-
-        service: "",
-
-        message: "",
-
-      });
-
-
-
-    } catch (error) {
-
-
-      console.log(error);
-
-
-      alert(
-
-        "Unable to submit. Please try again."
-
-      );
-
-
-    } finally {
-
-
-      setLoading(false);
-
-
-    }
-
-  };
-
-
-
+    // 5. Reset form
+    setForm({
+      name: "",
+      phone: "",
+      email: "",
+      service: "",
+      message: "",
+    });
+  } catch (error: any) {
+    console.error("Popup Error:", error);
+    alert(error?.message || "Unable to submit. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
   return (
 
     <div className="popup-overlay">
