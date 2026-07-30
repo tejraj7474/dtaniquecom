@@ -21,6 +21,8 @@ import co2LaserImg from "@/assets/service/co2-laser.jpeg";
 import lipBlushingImg from "@/assets/service/lip-blushing.jpeg";
 import microNeedlingImg from "@/assets/service/micro-needling.jpeg";
 import yellowPeelImg from "@/assets/service/yellow-peel.jpeg";
+import PopupForm from "@/components/PopupForm";
+import BeforeAfter from "@/components/BeforeAfter";
 
 const currentHydrafacialOffer = `${offerHydrafacial}?v=20260601-current`;
 
@@ -135,6 +137,7 @@ const services = [
   },
 ];
 
+
 const whyItems = [
   {
     n: "01",
@@ -189,7 +192,19 @@ function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
-  
+
+  const [popupOpen, setPopupOpen] = useState(true);
+  useEffect(() => {
+  if (popupOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [popupOpen]);
 
   useEffect(() => {
     const onScroll = () => setStickyVisible(window.scrollY > 400);
@@ -378,7 +393,35 @@ function Index() {
           ))}
         </div>
       </section>
+      {/* BEFORE AFTER RESULTS */}
+      <section className="before-after-section">
 
+        <div className="section-kicker" data-anim>
+          Real Results
+        </div>
+
+        <h2 className="section-title" data-anim data-anim-delay="1">
+          Transformations that speak
+          <br />
+          <em>for themselves.</em>
+        </h2>
+
+        <p 
+          style={{
+            maxWidth:"650px",
+            margin:"-2rem auto 3rem",
+            textAlign:"center",
+            color:"var(--mid)",
+            lineHeight:"1.8"
+          }}
+        >
+          See the visible difference achieved through our advanced
+          dermatology and aesthetic treatments.
+        </p>
+
+        <BeforeAfter />
+
+      </section>
       {/* WHY */}
       <section className="why">
         <div className="why-left">
@@ -609,6 +652,11 @@ function Index() {
         <div className="footer-bar-loc">📍 J.P. Nagar, Bengaluru, Karnataka</div>
         <a href="tel:+918884448906" className="footer-bar-phone">Call for Appointments</a>
       </footer>
+
+      <PopupForm
+  isOpen={popupOpen}
+  onClose={() => setPopupOpen(false)}
+/>
     </div>
   );
 }
@@ -722,6 +770,28 @@ const styles = `
   .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .tag { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--gold-light); padding: 0.2rem 0.6rem; border-radius: 2px; }
 
+
+
+.before-after-section .section-kicker {
+  justify-content:center;
+}
+
+
+.before-after-section .section-kicker::after {
+  display:none;
+}
+
+
+.before-after-section .section-title {
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+.before-after-section img {
+  border-radius:20px;
+}
   .why { background: var(--charcoal); color: #fff; padding: 6rem 5vw; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
   .why-left .section-kicker { color: var(--gold); }
   .why-left .section-kicker::after { background: var(--gold); }

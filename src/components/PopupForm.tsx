@@ -1,0 +1,456 @@
+import "../popup.css";
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+
+type PopupFormProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+const services = [
+  "Laser Hair Removal",
+  "Acne Treatments",
+  "Korean Glass Skin",
+  "BB Glow Treatment",
+  "Eyebrow Microblading",
+  "Face PRP",
+  "CO2 Laser",
+  "Lip Blushing",
+  "Micro Needling",
+  "HydraFacial",
+  "Yellow Peel",
+];
+
+export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
+
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+
+  const [form, setForm] = useState({
+
+    name: "",
+    phone: "",
+    email: "",
+    service: "",
+    message: "",
+
+  });
+
+
+  if (!isOpen) return null;
+
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+
+    setForm((prev) => ({
+
+      ...prev,
+
+      [e.target.name]: e.target.value,
+
+    }));
+
+  };
+
+
+
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+
+    e.preventDefault();
+
+
+    if (loading) return;
+
+
+    setLoading(true);
+
+
+    try {
+
+
+      // 1. Save lead in Supabase
+
+      const { error } = await supabase
+        .from("leads")
+        .insert({
+
+          name: form.name,
+
+          phone: form.phone,
+
+          email: form.email || null,
+
+          concern: form.service,
+
+          source: "Popup Form",
+
+        });
+
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+
+      // 2. Send email using Resend API
+
+      const mailResponse = await fetch(
+
+        "/api/send-mail",
+
+        {
+
+          method: "POST",
+
+          headers: {
+
+            "Content-Type": "application/json",
+
+          },
+
+
+          body: JSON.stringify({
+
+            name: form.name,
+
+            phone: form.phone,
+
+            email: form.email,
+
+            service: form.service,
+
+            message: form.message,
+
+          }),
+
+        }
+
+      );
+
+
+
+      const mailResult = await mailResponse.json();
+
+
+
+      if (mailResult.status !== "success") {
+
+        console.log("Mail Error:", mailResult.message);
+
+      }
+
+
+
+      // 3. Success popup
+
+      setSubmitted(true);
+
+
+
+      // 4. WhatsApp Redirect
+
+      const whatsappMessage = encodeURIComponent(
+
+        `Hi D-Tanique!
+
+Name: ${form.name}
+
+Phone: ${form.phone}
+
+Email: ${form.email}
+
+Treatment: ${form.service}
+
+Message: ${form.message}`
+
+      );
+
+
+      window.open(
+
+        `https://wa.me/918884448906?text=${whatsappMessage}`,
+
+        "_blank"
+
+      );
+
+
+
+
+      // Reset form
+
+      setForm({
+
+        name: "",
+
+        phone: "",
+
+        email: "",
+
+        service: "",
+
+        message: "",
+
+      });
+
+
+
+    } catch (error) {
+
+
+      console.log(error);
+
+
+      alert(
+
+        "Unable to submit. Please try again."
+
+      );
+
+
+    } finally {
+
+
+      setLoading(false);
+
+
+    }
+
+  };
+
+
+
+  return (
+
+    <div className="popup-overlay">
+
+      <div className="popup-box">
+
+
+        <button
+          className="popup-close"
+          onClick={onClose}
+        >
+          ×
+        </button>
+
+
+
+        {submitted ? (
+
+          <div className="popup-success">
+
+
+            <div className="success-icon">
+              ✓
+            </div>
+
+
+            <h2>
+              Thank You!
+            </h2>
+
+
+            <p>
+              Our dermatologist will contact you shortly.
+            </p>
+
+
+
+            <button
+
+              className="popup-submit"
+
+              onClick={() => {
+
+                setSubmitted(false);
+
+                onClose();
+
+              }}
+
+            >
+
+              Close
+
+            </button>
+
+
+          </div>
+
+
+        ) : (
+
+
+          <>
+
+
+            <h2>
+              Book Your Free Consultation
+            </h2>
+
+
+            <p>
+              Fill in your details and our expert will contact you shortly.
+            </p>
+
+
+
+            <form onSubmit={handleSubmit}>
+
+
+              <input
+
+                type="text"
+
+                placeholder="Full Name"
+
+                name="name"
+
+                value={form.name}
+
+                onChange={handleChange}
+
+                required
+
+              />
+
+
+
+              <input
+
+                type="tel"
+
+                placeholder="Phone Number"
+
+                name="phone"
+
+                value={form.phone}
+
+                onChange={handleChange}
+
+                required
+
+              />
+
+
+
+              <input
+
+                type="email"
+
+                placeholder="Email Address"
+
+                name="email"
+
+                value={form.email}
+
+                onChange={handleChange}
+
+              />
+
+
+
+              <select
+
+                name="service"
+
+                value={form.service}
+
+                onChange={handleChange}
+
+                required
+
+              >
+
+                <option value="">
+                  Select Treatment
+                </option>
+
+
+                {services.map((service) => (
+
+                  <option
+
+                    key={service}
+
+                    value={service}
+
+                  >
+
+                    {service}
+
+                  </option>
+
+                ))}
+
+
+              </select>
+
+
+
+
+              <textarea
+
+                rows={4}
+
+                placeholder="Message"
+
+                name="message"
+
+                value={form.message}
+
+                onChange={handleChange}
+
+              />
+
+
+
+
+              <button
+
+                type="submit"
+
+                className="popup-submit"
+
+                disabled={loading}
+
+              >
+
+                {loading
+                  ? "Submitting..."
+                  : "Book Consultation"
+                }
+
+
+              </button>
+
+
+
+            </form>
+
+
+          </>
+
+        )}
+
+
+      </div>
+
+
+    </div>
+
+  );
+
+}
