@@ -20,7 +20,7 @@ export async function POST({ request }: any) {
 
     await resend.emails.send({
 
-      from: "onboarding@resend.dev",
+     from: "DtaniQue <noreply@dtanique.com>",
 
       to: [
         "marketing.dtaniqueblr@gmail.com",
