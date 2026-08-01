@@ -102,7 +102,7 @@ const services = [
   },
   {
     icon: "🌟",
-    name: "CO2 Laser",
+    name: "CO2 Treatment",
     desc: "Fractional CO2 laser resurfacing for scars, wrinkles and uneven texture.",
     tags: ["Resurfacing", "Scars", "Anti-Ageing"],
     img: co2LaserImg,

@@ -14,7 +14,7 @@ const services = [
   "BB Glow Treatment",
   "Eyebrow Microblading",
   "Face PRP",
-  "CO2 Laser",
+  "CO2 Treatment",
   "Lip Blushing",
   "Micro Needling",
   "HydraFacial",
