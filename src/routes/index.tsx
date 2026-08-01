@@ -287,7 +287,7 @@ function Index() {
 
       <div className={`sticky-bar ${stickyVisible ? "visible" : ""}`}>
         <img src={logo} alt="D'tanique The Derma Clinic" className="sticky-logo" />
-        <span>J.P. Nagar, Bengaluru · Premium Dermatology</span>
+        {/* <span>J.P. Nagar, Bengaluru · Premium Dermatology</span> */}
         <a href="#book">Book Free Consultation →</a>
       </div>
 
