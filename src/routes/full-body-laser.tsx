@@ -290,19 +290,19 @@ function FullBodyLaserPage() {
     const time = ((fd.get("time") as string) || "Any time").trim();
     const name = `${firstName} ${lastName}`.trim();
 
-    await supabase.from("leads").insert({
-      name,
-      phone: mobile,
-      concern: `Full Body LHR ₹39,999 · Area: ${area} · Preferred: ${time}`,
-      source: "full-body-laser",
-    });
-
     const message =
       `Hi D-Tanique! I'd like to claim the Full Body LHR ₹39,999 slot.%0A%0A` +
-      `*Name:* ${name}%0A*Mobile:* ${mobile}%0A*Area:* ${area}%0A*Preferred Time:* ${time}`;
+      `*Name:* ${encodeURIComponent(name)}%0A` +
+      `*Mobile:* ${encodeURIComponent(mobile)}%0A` +
+      `*Area:* ${encodeURIComponent(area)}%0A` +
+      `*Preferred Time:* ${encodeURIComponent(time)}`;
 
     setSubmitted(true);
-    window.open(`https://wa.me/${WA}?text=${message}`, "_blank");
+    const waUrl = `https://wa.me/${WA}?text=${message}`;
+    const opened = window.open(waUrl, "_blank");
+    if (!opened) {
+      window.location.href = waUrl;
+    }
   };
 
   const scrollTo = (id: string) => (e: React.MouseEvent) => {

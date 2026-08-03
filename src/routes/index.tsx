@@ -233,52 +233,47 @@ function Index() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (submitting) return;
     setSubmitError(null);
     setSubmitting(true);
-    const fd = new FormData(e.currentTarget);
-    const firstName = (fd.get("firstName") as string)?.trim() || "";
-    const lastName = (fd.get("lastName") as string)?.trim() || "";
-    const phone = (fd.get("mobile") as string)?.trim() || "";
-    const email = ((fd.get("email") as string) || "").trim() || null;
-    const treatment = (fd.get("treatment") as string)?.trim() || "";
-    const time = (fd.get("time") as string)?.trim() || "";
-    const concern = [treatment, time && `Preferred time: ${time}`].filter(Boolean).join(" · ");
-    const name = `${firstName} ${lastName}`.trim();
 
-    const { error } = await supabase.from("leads").insert({
-      name,
-      phone,
-      email,
-      concern: concern || null,
-      source: "home",
-    });
-    setSubmitting(false);
-    if (error) {
-      setSubmitError("Sorry, we couldn't submit. Please try again or call us directly.");
-      return;
+    try {
+      const fd = new FormData(e.currentTarget);
+      const firstName = (fd.get("firstName") as string)?.trim() || "";
+      const lastName = (fd.get("lastName") as string)?.trim() || "";
+      const phone = (fd.get("mobile") as string)?.trim() || "";
+      const email = ((fd.get("email") as string) || "").trim() || null;
+      const treatment = (fd.get("treatment") as string)?.trim() || "";
+      const time = (fd.get("time") as string)?.trim() || "";
+      const name = `${firstName} ${lastName}`.trim();
+
+      // Show success screen
+      setSubmitted(true);
+
+      // Forward lead details to clinic WhatsApp
+      const WHATSAPP_NUMBER = "918884448906";
+      const message =
+        `Hi D-Tanique! New consultation request:%0A%0A` +
+        `*Name:* ${encodeURIComponent(name)}%0A` +
+        `*Mobile:* ${encodeURIComponent(phone)}%0A` +
+        (email ? `*Email:* ${encodeURIComponent(email)}%0A` : "") +
+        (treatment ? `*Treatment:* ${encodeURIComponent(treatment)}%0A` : "") +
+        (time ? `*Preferred Time:* ${encodeURIComponent(time)}` : "");
+
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+      const opened = window.open(waUrl, "_blank");
+      if (!opened) {
+        // Fallback to same-tab navigation if popups blocked
+        window.location.href = waUrl;
+      }
+    } catch (err: any) {
+      console.error("Submit Error:", err);
+      setSubmitError("Unable to open WhatsApp. Please call us directly.");
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitted(true);
-
-    // Forward lead details to clinic WhatsApp
-    const WHATSAPP_NUMBER = "918884448906";
-    const message =
-      `Hi D-Tanique! New consultation request:%0A%0A` +
-      `*Name:* ${name}%0A` +
-      `*Mobile:* ${phone}%0A` +
-      (email ? `*Email:* ${email}%0A` : "") +
-      (treatment ? `*Treatment:* ${treatment}%0A` : "") +
-      (time ? `*Preferred Time:* ${time}` : "");
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-    const opened = window.open(waUrl, "_blank");
-    if (!opened) {
-      // Popup blocked — fall back to same-tab navigation so the message is still delivered
-      window.location.href = waUrl;
-    }
-
   };
 
   return (

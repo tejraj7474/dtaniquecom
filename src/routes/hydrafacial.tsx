@@ -109,23 +109,19 @@ function HydraFacialPage() {
     const time = (fd.get("time") as string)?.trim() || "Any time";
     const name = `${firstName} ${lastName}`.trim();
 
-    // Save lead to backend (don't block WhatsApp on errors)
-    await supabase.from("leads").insert({
-      name,
-      phone: mobile,
-      concern: `HydraFacial ₹1499 · ${concern} · Preferred: ${time}`,
-      source: "hydrafacial",
-    });
-
     const message =
       `Hi D-Tanique! I'd like to book the ₹1499 HydraFacial.%0A%0A` +
-      `*Name:* ${firstName} ${lastName}%0A` +
-      `*Mobile:* ${mobile}%0A` +
-      `*Skin Concern:* ${concern}%0A` +
-      `*Preferred Time:* ${time}`;
+      `*Name:* ${encodeURIComponent(name)}%0A` +
+      `*Mobile:* ${encodeURIComponent(mobile)}%0A` +
+      `*Skin Concern:* ${encodeURIComponent(concern)}%0A` +
+      `*Preferred Time:* ${encodeURIComponent(time)}`;
 
     setSubmitted(true);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    const opened = window.open(waUrl, "_blank");
+    if (!opened) {
+      window.location.href = waUrl;
+    }
   };
 
   const scrollTo = (id: string) => () => {

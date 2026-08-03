@@ -1,6 +1,5 @@
 import "../popup.css";
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 type PopupFormProps = {
   isOpen: boolean;
@@ -22,135 +21,74 @@ const services = [
 ];
 
 export default function PopupForm({ isOpen, onClose }: PopupFormProps) {
-
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-
   const [form, setForm] = useState({
-
     name: "",
     phone: "",
     email: "",
     service: "",
     message: "",
-
   });
 
-
   if (!isOpen) return null;
-
 
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
-
     setForm((prev) => ({
-
       ...prev,
-
       [e.target.name]: e.target.value,
-
     }));
-
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
 
-const handleSubmit = async (
-  e: React.FormEvent<HTMLFormElement>
-) => {
-  e.preventDefault();
+    try {
+      // 1. Prepare WhatsApp message with form details
+      const lines = [
+        `Hi D-Tanique! New consultation request:`,
+        ``,
+        `*Name:* ${form.name}`,
+        `*Phone:* ${form.phone}`,
+        form.email ? `*Email:* ${form.email}` : null,
+        form.service ? `*Treatment:* ${form.service}` : null,
+        form.message ? `*Message:* ${form.message}` : null,
+      ].filter(Boolean);
 
-  if (loading) return;
+      const whatsappMessage = encodeURIComponent(lines.join("\n"));
+      const waUrl = `https://wa.me/918884448906?text=${whatsappMessage}`;
 
-  setLoading(true);
+      // 2. Open WhatsApp (fallback to direct navigation if popup blocked)
+      const opened = window.open(waUrl, "_blank");
+      if (!opened) {
+        window.location.href = waUrl;
+      }
 
-  try {
-    // 1. Save lead in Supabase
-    const { error } = await supabase.from("leads").insert({
-      name: form.name,
-      phone: form.phone,
-      email: form.email || null,
-      concern: form.service,
-      source: "Popup Form",
-    });
+      // 3. Show success message
+      setSubmitted(true);
 
-    if (error) {
-      throw error;
+      // 4. Reset form fields
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        service: "",
+        message: "",
+      });
+    } catch (error: any) {
+      console.error("Popup Error:", error);
+      alert("Unable to redirect to WhatsApp. Please try again or call us directly.");
+    } finally {
+      setLoading(false);
     }
-
-    // 2. Send email using Resend API
-    console.log("Calling:", "/api/-send-mail");
-
-    const mailResponse = await fetch("/api/-send-mail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: form.name,
-        phone: form.phone,
-        email: form.email,
-        service: form.service,
-        message: form.message,
-      }),
-    });
-
-    console.log("Status:", mailResponse.status);
-
-    if (!mailResponse.ok) {
-      const text = await mailResponse.text();
-      console.error("API Error:", text);
-      throw new Error(text);
-    }
-
-    const mailResult = await mailResponse.json();
-    console.log("Mail Result:", mailResult);
-
-    if (mailResult.status !== "success") {
-      throw new Error(mailResult.message || "Mail sending failed.");
-    }
-
-    // 3. Show success popup
-    setSubmitted(true);
-
-    // 4. Open WhatsApp
-    const whatsappMessage = encodeURIComponent(
-      `Hi D-Tanique!
-
-Name: ${form.name}
-
-Phone: ${form.phone}
-
-Email: ${form.email}
-
-Treatment: ${form.service}
-
-Message: ${form.message}`
-    );
-
-    window.open(
-      `https://wa.me/918884448906?text=${whatsappMessage}`,
-      "_blank"
-    );
-
-    // 5. Reset form
-    setForm({
-      name: "",
-      phone: "",
-      email: "",
-      service: "",
-      message: "",
-    });
-  } catch (error: any) {
-    console.error("Popup Error:", error);
-    alert(error?.message || "Unable to submit. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
   return (
 
     <div className="popup-overlay">
