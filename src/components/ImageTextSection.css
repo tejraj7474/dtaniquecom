@@ -90,7 +90,7 @@
     }
 
     .image-text-image img {
-        height: 400px;
+        height: 100%;
     }
 }
 
@@ -107,7 +107,7 @@
     }
 
     .image-text-image img {
-        height: 300px;
+        height: 100%;
     }
 
     .image-text-content h2 {
