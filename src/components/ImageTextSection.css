@@ -1,0 +1,157 @@
+.image-text-section {
+    width: 100%;
+    padding: 100px 5vw;
+    background: var(--warm-white);
+    box-sizing: border-box;
+}
+
+.image-text-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 70px;
+}
+
+/* LEFT IMAGE */
+.image-text-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.image-text-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* RIGHT CONTENT */
+.image-text-content {
+    width: 100%;
+}
+
+.image-text-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    color: var(--accent);
+    font-weight: 500;
+
+    margin-bottom: 18px;
+}
+
+.image-text-subtitle::after {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+}
+
+.image-text-content h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+
+    color: var(--charcoal);
+
+    margin: 0 0 25px;
+}
+
+.image-text-content p {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    font-weight: 300;
+
+    color: var(--mid);
+
+    margin: 0;
+}
+
+
+/* TABLET */
+@media (max-width: 900px) {
+    .image-text-section {
+        padding: 70px 5vw;
+    }
+
+    .image-text-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
+    }
+
+    .image-text-image img {
+        height: 400px;
+    }
+}
+
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .image-text-section {
+        padding: 60px 1.5rem;
+    }
+
+    .image-text-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .image-text-image img {
+        height: 300px;
+    }
+
+    .image-text-content h2 {
+        font-size: 2.2rem;
+    }
+}
+
+.membership-points {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.membership-point {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.membership-point>span {
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.membership-point p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.5;
+}
+
+.membership-closing {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.1rem !important;
+    font-style: italic;
+    color: var(--accent) !important;
+    margin-top: 25px !important;
+}

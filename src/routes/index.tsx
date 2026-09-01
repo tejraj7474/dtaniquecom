@@ -23,6 +23,9 @@ import microNeedlingImg from "@/assets/service/micro-needling.jpeg";
 import yellowPeelImg from "@/assets/service/yellow-peel.jpeg";
 import PopupForm from "@/components/PopupForm";
 import BeforeAfter from "@/components/BeforeAfter";
+import ImageTextSection from "@/components/ImageTextSection";
+
+
 
 const currentHydrafacialOffer = `${offerHydrafacial}?v=20260601-current`;
 
@@ -302,6 +305,7 @@ function Index() {
           <div className="hero-ctas" data-anim data-anim-delay="3">
             <a href="#book" className="btn-primary">Book Free Consultation</a>
             <a href="#services" className="btn-secondary">Explore Services</a>
+             <a href="#premium" className="btn-primary">Premium Membership</a>
           </div>
           <div className="hero-trust" data-anim data-anim-delay="4">
             <div className="trust-item">
@@ -364,6 +368,12 @@ function Index() {
         <div className="proof-item"><div className="proof-icon">📍</div><div><strong>J.P. Nagar, Bengaluru</strong><br />Easily accessible location</div></div>
         <div className="proof-item"><div className="proof-icon">🎁</div><div><strong>Free Consultation</strong><br />No obligation, personalized advice</div></div>
       </section>
+
+  
+{/* PREMIUM MEMBERSHIP SECTION */}
+<section id="premium">
+  <ImageTextSection />
+</section>
 
       {/* SERVICES */}
       <section className="services" id="services">
