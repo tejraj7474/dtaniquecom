@@ -389,7 +389,7 @@ function Index() {
         <div className="hero-right">
           <div className="hero-slide s1">
             <img
-              src={heroTreatment}
+              src={newHydrafacialOffer}
               alt="Woman enjoying a premium dermatology treatment at D-Tanique clinic"
               width={1280}
               height={1600}
@@ -397,19 +397,16 @@ function Index() {
           </div>
           <div className="hero-slide s2">
             <img
-              src={offerLaserHairRemoval}
+              src={newLaserHairRemovalOffer}
               alt="Laser Hair Removal Packages — Limited Time Offer"
             />
           </div>
           <div className="hero-slide s3">
-            <img
-              src={currentHydrafacialOffer}
-              alt="Hydra Facial — Instant Glass Skin — ₹1499 Limited Time Offer"
-            />
+            <img src={newFullBodyLaserOffer} alt="Full Body Laser Treatment — Limited Time Offer" />
           </div>
           <div className="hero-slide s4">
             <img
-              src={offerUnderarmsUpperlips}
+              src={newUnderarmsUpperlipsOffer}
               alt="Underarms & Upper Lips Laser — Buy 1 Get 1 Free"
             />
           </div>
