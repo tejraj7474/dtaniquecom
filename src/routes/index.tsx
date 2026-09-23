@@ -25,7 +25,11 @@ import PopupForm from "@/components/PopupForm";
 import BeforeAfter from "@/components/BeforeAfter";
 import ImageTextSection from "@/components/ImageTextSection";
 
-
+import newHydrafacialOffer from "../assets/offers/hydrafacial-new.jpg";
+import newIvDripOffer from "../assets/offers/instantglow.jpg";
+import newFullBodyLaserOffer from "../assets/offers/patchtest.jpg";
+import newUnderarmsUpperlipsOffer from "../assets/offers/treatmentoffer.jpg";
+import newLaserHairRemovalOffer from "../assets/offers/fullbodywax.jpg";
 
 const currentHydrafacialOffer = `${offerHydrafacial}?v=20260601-current`;
 
@@ -38,7 +42,10 @@ export const Route = createFileRoute("/")({
         content:
           "Bengaluru's premium derma clinic in J.P. Nagar, near Jayanagar, BTM & Bannerghatta Road. Laser hair removal, acne, Korean glass skin & skin treatments by certified dermatologists. Book today.",
       },
-      { property: "og:title", content: "D-Tanique | Premium Dermatology & Aesthetics — J.P. Nagar, Bengaluru" },
+      {
+        property: "og:title",
+        content: "D-Tanique | Premium Dermatology & Aesthetics — J.P. Nagar, Bengaluru",
+      },
       {
         property: "og:description",
         content:
@@ -140,7 +147,6 @@ const services = [
   },
 ];
 
-
 const whyItems = [
   {
     n: "01",
@@ -165,29 +171,76 @@ const whyItems = [
 ];
 
 const steps = [
-  { n: 1, title: "Book Online", desc: "Fill in the form below or call us. Choose a time that suits you — flexible slots available." },
-  { n: 2, title: "Free Consultation", desc: "Meet Senior Dermatologist Team for a personalized skin assessment. Get your tailored treatment plan." },
-  { n: 3, title: "Begin Treatment", desc: "Start your prescribed plan with expert care and the latest aesthetic technology." },
-  { n: 4, title: "See the Results", desc: "Track your progress. Visible, lasting results that build your confidence every session." },
+  {
+    n: 1,
+    title: "Book Online",
+    desc: "Fill in the form below or call us. Choose a time that suits you — flexible slots available.",
+  },
+  {
+    n: 2,
+    title: "Free Consultation",
+    desc: "Meet Senior Dermatologist Team for a personalized skin assessment. Get your tailored treatment plan.",
+  },
+  {
+    n: 3,
+    title: "Begin Treatment",
+    desc: "Start your prescribed plan with expert care and the latest aesthetic technology.",
+  },
+  {
+    n: 4,
+    title: "See the Results",
+    desc: "Track your progress. Visible, lasting results that build your confidence every session.",
+  },
 ];
 
 const testimonials = [
-  { text: "The laser hair removal was painless and effective. Three sessions in and I'm already seeing 70% reduction. The staff is so warm and professional.", who: "Anjali M. · Laser Hair Removal" },
-  { text: "Got the BB Glow done before my wedding — absolute game changer. My skin looked like a filter in real life. 100% recommend D-Tanique.", who: "Deepika S. · BB Glow Treatment" },
-  { text: "Struggled with acne for years. Senior Dermatologist Team gave me a plan that actually worked in a few weeks. This clinic is the real deal — not just another salon.", who: "Rahul T. · Acne Treatment" },
+  {
+    text: "The laser hair removal was painless and effective. Three sessions in and I'm already seeing 70% reduction. The staff is so warm and professional.",
+    who: "Anjali M. · Laser Hair Removal",
+  },
+  {
+    text: "Got the BB Glow done before my wedding — absolute game changer. My skin looked like a filter in real life. 100% recommend D-Tanique.",
+    who: "Deepika S. · BB Glow Treatment",
+  },
+  {
+    text: "Struggled with acne for years. Senior Dermatologist Team gave me a plan that actually worked in a few weeks. This clinic is the real deal — not just another salon.",
+    who: "Rahul T. · Acne Treatment",
+  },
 ];
 
 const faqs = [
-  { q: "Is the consultation really free?", a: "Yes, completely free. Your initial consultation with Senior Dermatologist Team includes a skin assessment and personalized treatment recommendation with no obligation to book any service." },
-  { q: "Is laser hair removal painful?", a: "Modern laser systems are designed to minimize discomfort. Most patients describe it as a mild snapping sensation. We use cooling technology to keep you comfortable throughout the session." },
-  { q: "How many sessions will I need?", a: "It varies by treatment and individual. Laser hair removal typically requires 6–8 sessions for optimal results. Skin treatments like acne protocols are usually 4–6 sessions. Senior Dermatologist Team will give you a personalized estimate during consultation." },
-  { q: "Where is D-Tanique located?", a: "We are located in J.P. Nagar, Bengaluru — easily reachable from Jayanagar, Bannerghatta Road, BTM Layout, and Kanakapura Road. Our team can share the exact address when you book your appointment." },
-  { q: "Are the treatments safe for Indian skin tones?", a: "Absolutely. Our equipment and protocols are specifically calibrated for South Asian skin tones. Senior Dermatologist Team has expertise in treating all Fitzpatrick skin types safely and effectively." },
+  {
+    q: "Is the consultation really free?",
+    a: "Yes, completely free. Your initial consultation with Senior Dermatologist Team includes a skin assessment and personalized treatment recommendation with no obligation to book any service.",
+  },
+  {
+    q: "Is laser hair removal painful?",
+    a: "Modern laser systems are designed to minimize discomfort. Most patients describe it as a mild snapping sensation. We use cooling technology to keep you comfortable throughout the session.",
+  },
+  {
+    q: "How many sessions will I need?",
+    a: "It varies by treatment and individual. Laser hair removal typically requires 6–8 sessions for optimal results. Skin treatments like acne protocols are usually 4–6 sessions. Senior Dermatologist Team will give you a personalized estimate during consultation.",
+  },
+  {
+    q: "Where is D-Tanique located?",
+    a: "We are located in J.P. Nagar, Bengaluru — easily reachable from Jayanagar, Bannerghatta Road, BTM Layout, and Kanakapura Road. Our team can share the exact address when you book your appointment.",
+  },
+  {
+    q: "Are the treatments safe for Indian skin tones?",
+    a: "Absolutely. Our equipment and protocols are specifically calibrated for South Asian skin tones. Senior Dermatologist Team has expertise in treating all Fitzpatrick skin types safely and effectively.",
+  },
 ];
 
 const marqueeItems = [
-  "Laser Hair Removal", "Korean Glass Skin", "Acne Treatments", "BB Glow",
-  "Microblading", "Yellow Peel", "Lip Blushing", "PRP Therapy", "Dermatology Consultations",
+  "Laser Hair Removal",
+  "Korean Glass Skin",
+  "Acne Treatments",
+  "BB Glow",
+  "Microblading",
+  "Yellow Peel",
+  "Lip Blushing",
+  "PRP Therapy",
+  "Dermatology Consultations",
 ];
 
 function Index() {
@@ -198,16 +251,16 @@ function Index() {
 
   const [popupOpen, setPopupOpen] = useState(true);
   useEffect(() => {
-  if (popupOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+    if (popupOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [popupOpen]);
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [popupOpen]);
 
   useEffect(() => {
     const onScroll = () => setStickyVisible(window.scrollY > 400);
@@ -227,7 +280,7 @@ function Index() {
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.12 },
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -289,23 +342,32 @@ function Index() {
         <a href="#book">Book Free Consultation →</a>
       </div>
 
-      
-
       {/* HERO */}
       <section className="hero">
         <div className="hero-left">
-          <div className="badge" data-anim>Now Open · J.P. Nagar, Bengaluru</div>
+          <div className="badge" data-anim>
+            Now Open · J.P. Nagar, Bengaluru
+          </div>
           <h1 data-anim data-anim-delay="1">
-            Your skin's finest<br /><em>chapter</em> starts here.
+            Your skin's finest
+            <br />
+            <em>chapter</em> starts here.
           </h1>
           <p className="hero-sub" data-anim data-anim-delay="2">
             Premium dermatology & aesthetic care by certified dermatologists. Laser hair removal,
-            glass skin, acne treatments, and advanced cosmetic procedures — all under one roof in J.P. Nagar.
+            glass skin, acne treatments, and advanced cosmetic procedures — all under one roof in
+            J.P. Nagar.
           </p>
           <div className="hero-ctas" data-anim data-anim-delay="3">
-            <a href="#book" className="btn-primary">Book Free Consultation</a>
-            <a href="#services" className="btn-secondary">Explore Services</a>
-             <a href="#premium" className="btn-primary">Premium Membership</a>
+            <a href="#book" className="btn-primary">
+              Book Free Consultation
+            </a>
+            <a href="#services" className="btn-secondary">
+              Explore Services
+            </a>
+            <a href="#premium" className="btn-primary">
+              Premium Membership
+            </a>
           </div>
           <div className="hero-trust" data-anim data-anim-delay="4">
             <div className="trust-item">
@@ -334,17 +396,28 @@ function Index() {
             />
           </div>
           <div className="hero-slide s2">
-            <img src={offerLaserHairRemoval} alt="Laser Hair Removal Packages — Limited Time Offer" />
+            <img
+              src={offerLaserHairRemoval}
+              alt="Laser Hair Removal Packages — Limited Time Offer"
+            />
           </div>
           <div className="hero-slide s3">
-            <img src={currentHydrafacialOffer} alt="Hydra Facial — Instant Glass Skin — ₹1499 Limited Time Offer" />
+            <img
+              src={currentHydrafacialOffer}
+              alt="Hydra Facial — Instant Glass Skin — ₹1499 Limited Time Offer"
+            />
           </div>
           <div className="hero-slide s4">
-            <img src={offerUnderarmsUpperlips} alt="Underarms & Upper Lips Laser — Buy 1 Get 1 Free" />
+            <img
+              src={offerUnderarmsUpperlips}
+              alt="Underarms & Upper Lips Laser — Buy 1 Get 1 Free"
+            />
           </div>
           <div className="hero-tag">
             <div className="tag-label">✦ Certified Clinic</div>
-            <div className="tag-text">Advanced laser & aesthetic technology with medical-grade results.</div>
+            <div className="tag-text">
+              Advanced laser & aesthetic technology with medical-grade results.
+            </div>
           </div>
         </div>
       </section>
@@ -362,24 +435,62 @@ function Index() {
 
       {/* PROOF */}
       <section className="proof">
-        <div className="proof-item"><div className="proof-icon">✓</div><div><strong>Certified Dermatologists</strong><br />Medical-grade expertise</div></div>
-        <div className="proof-item"><div className="proof-icon">★</div><div><strong>5-Star Rated</strong><br />On Google Reviews</div></div>
-        <div className="proof-item"><div className="proof-icon">🔬</div><div><strong>Advanced Technology</strong><br />Latest laser & aesthetic devices</div></div>
-        <div className="proof-item"><div className="proof-icon">📍</div><div><strong>J.P. Nagar, Bengaluru</strong><br />Easily accessible location</div></div>
-        <div className="proof-item"><div className="proof-icon">🎁</div><div><strong>Free Consultation</strong><br />No obligation, personalized advice</div></div>
+        <div className="proof-item">
+          <div className="proof-icon">✓</div>
+          <div>
+            <strong>Certified Dermatologists</strong>
+            <br />
+            Medical-grade expertise
+          </div>
+        </div>
+        <div className="proof-item">
+          <div className="proof-icon">★</div>
+          <div>
+            <strong>5-Star Rated</strong>
+            <br />
+            On Google Reviews
+          </div>
+        </div>
+        <div className="proof-item">
+          <div className="proof-icon">🔬</div>
+          <div>
+            <strong>Advanced Technology</strong>
+            <br />
+            Latest laser & aesthetic devices
+          </div>
+        </div>
+        <div className="proof-item">
+          <div className="proof-icon">📍</div>
+          <div>
+            <strong>J.P. Nagar, Bengaluru</strong>
+            <br />
+            Easily accessible location
+          </div>
+        </div>
+        <div className="proof-item">
+          <div className="proof-icon">🎁</div>
+          <div>
+            <strong>Free Consultation</strong>
+            <br />
+            No obligation, personalized advice
+          </div>
+        </div>
       </section>
 
-  
-{/* PREMIUM MEMBERSHIP SECTION */}
-<section id="premium">
-  <ImageTextSection />
-</section>
+      {/* PREMIUM MEMBERSHIP SECTION */}
+      <section id="premium">
+        <ImageTextSection />
+      </section>
 
       {/* SERVICES */}
       <section className="services" id="services">
-        <div className="section-kicker" data-anim>Our Treatments</div>
+        <div className="section-kicker" data-anim>
+          Our Treatments
+        </div>
         <h2 className="section-title" data-anim data-anim-delay="1">
-          Every service you need,<br /><em>expertly</em> delivered.
+          Every service you need,
+          <br />
+          <em>expertly</em> delivered.
         </h2>
         <div className="services-grid">
           {services.map((s, i) => (
@@ -392,7 +503,11 @@ function Index() {
               <h3 className="service-name">{s.name}</h3>
               <p className="service-desc">{s.desc}</p>
               <div className="service-tags">
-                {s.tags.map((t) => <span className="tag" key={t}>{t}</span>)}
+                {s.tags.map((t) => (
+                  <span className="tag" key={t}>
+                    {t}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
@@ -400,7 +515,6 @@ function Index() {
       </section>
       {/* BEFORE AFTER RESULTS */}
       <section className="before-after-section">
-
         <div className="section-kicker" data-anim>
           Real Results
         </div>
@@ -411,28 +525,31 @@ function Index() {
           <em>for themselves.</em>
         </h2>
 
-        <p 
+        <p
           style={{
-            maxWidth:"650px",
-            margin:"-2rem auto 3rem",
-            textAlign:"center",
-            color:"var(--mid)",
-            lineHeight:"1.8"
+            maxWidth: "650px",
+            margin: "-2rem auto 3rem",
+            textAlign: "center",
+            color: "var(--mid)",
+            lineHeight: "1.8",
           }}
         >
-          See the visible difference achieved through our advanced
-          dermatology and aesthetic treatments.
+          See the visible difference achieved through our advanced dermatology and aesthetic
+          treatments.
         </p>
 
         <BeforeAfter />
-
       </section>
       {/* WHY */}
       <section className="why">
         <div className="why-left">
-          <div className="section-kicker" data-anim>Why Choose Us</div>
+          <div className="section-kicker" data-anim>
+            Why Choose Us
+          </div>
           <h2 className="section-title" data-anim data-anim-delay="1">
-            Bengaluru's premium derma clinic,<br /><em>built differently.</em>
+            Bengaluru's premium derma clinic,
+            <br />
+            <em>built differently.</em>
           </h2>
         </div>
         <div className="why-right">
@@ -451,47 +568,115 @@ function Index() {
       {/* OFFER */}
       <section className="offer">
         <div className="offer-inner">
-          <h2 data-anim>Your <em>first consultation</em> is on us.</h2>
+          <h2 data-anim>
+            Your <em>first consultation</em> is on us.
+          </h2>
           <p data-anim data-anim-delay="1">
-            Book your free, no-obligation skin consultation with Senior Dermatologist Team. Walk away with a personalized treatment plan — whether or not you book a service.
+            Book your free, no-obligation skin consultation with Senior Dermatologist Team. Walk
+            away with a personalized treatment plan — whether or not you book a service.
           </p>
-          <a href="#book" className="btn-primary">Claim Your Free Consultation →</a>
-          <span className="offer-note">Limited slots available · J.P. Nagar clinic · No credit card required</span>
+          <a href="#book" className="btn-primary">
+            Claim Your Free Consultation →
+          </a>
+          <span className="offer-note">
+            Limited slots available · J.P. Nagar clinic · No credit card required
+          </span>
         </div>
       </section>
 
       {/* PROMO POSTERS */}
-      <section style={{ padding: "80px 24px", background: "linear-gradient(180deg,#fff 0%,#faf3ec 100%)" }}>
+      <section
+        style={{ padding: "80px 24px", background: "linear-gradient(180deg,#fff 0%,#faf3ec 100%)" }}
+      >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <p style={{ fontSize: 12, letterSpacing: "0.3em", textTransform: "uppercase", color: "#b76e79", marginBottom: 12 }}>
+            <p
+              style={{
+                fontSize: 12,
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                color: "#b76e79",
+                marginBottom: 12,
+              }}
+            >
               Limited Time
             </p>
-            <h2 style={{ fontFamily: "Cormorant Garamond, Georgia, serif", fontSize: "clamp(28px,4vw,44px)", fontWeight: 300, color: "#1a1a1a", margin: 0 }}>
+            <h2
+              style={{
+                fontFamily: "Cormorant Garamond, Georgia, serif",
+                fontSize: "clamp(28px,4vw,44px)",
+                fontWeight: 300,
+                color: "#1a1a1a",
+                margin: 0,
+              }}
+            >
               Current <em>Opening Offers</em>
             </h2>
             <p style={{ color: "#666", marginTop: 12, fontSize: 14 }}>
               Tap any offer to claim it on WhatsApp.
             </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 20 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
+              gap: 20,
+            }}
+          >
             {[
-              { src: currentHydrafacialOffer, alt: "Hydra Facial — Instant Glass Skin — ₹1499 limited time offer", msg: "Hi D'Tanique, I'd like to claim the Hydra Facial ₹1499 limited time offer." },
-              { src: offerIvDrip, alt: "IV Drip wellness 50% off opening offer", msg: "Hi D'Tanique, I'd like to claim the IV Drip 50% off opening offer." },
-              { src: offerFullBodyLaser, alt: "Full body laser hair reduction 50% off — 10 sessions", msg: "Hi D'Tanique, I'd like to claim the Full Body Laser 50% off (10 sessions) offer." },
-              { src: offerUnderarmsUpperlips, alt: "Underarms / Upper lips laser — Buy 1 Get 1 Free", msg: "Hi D'Tanique, I'd like to claim the Underarms / Upper Lips Buy 1 Get 1 Free offer." },
-              { src: offerLaserHairRemoval, alt: "Laser Hair Removal Packages — individual & combo limited time offer", msg: "Hi D'Tanique, I'd like to know more about the Laser Hair Removal packages offer." },
+              {
+                src: newHydrafacialOffer,
+                alt: "Hydra Facial — Instant Glass Skin — ₹1499 limited time offer",
+                msg: "Hi D'Tanique, I'd like to claim the Hydra Facial ₹1499 limited time offer.",
+              },
+              {
+                src: newIvDripOffer,
+                alt: "IV Drip wellness 50% off opening offer",
+                msg: "Hi D'Tanique, I'd like to claim the IV Drip 50% off opening offer.",
+              },
+              {
+                src: newFullBodyLaserOffer,
+                alt: "Full body laser hair reduction 50% off — 10 sessions",
+                msg: "Hi D'Tanique, I'd like to claim the Full Body Laser 50% off (10 sessions) offer.",
+              },
+              {
+                src: newUnderarmsUpperlipsOffer,
+                alt: "Underarms / Upper lips laser — Buy 1 Get 1 Free",
+                msg: "Hi D'Tanique, I'd like to claim the Underarms / Upper Lips Buy 1 Get 1 Free offer.",
+              },
+              {
+                src: newLaserHairRemovalOffer,
+                alt: "Laser Hair Removal Packages — individual & combo limited time offer",
+                msg: "Hi D'Tanique, I'd like to know more about the Laser Hair Removal packages offer.",
+              },
             ].map((o, i) => (
               <a
                 key={i}
                 href={`https://wa.me/918884448906?text=${encodeURIComponent(o.msg)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "block", borderRadius: 16, overflow: "hidden", boxShadow: "0 8px 24px rgba(0,0,0,0.08)", transition: "transform .3s ease, box-shadow .3s ease" }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 16px 36px rgba(0,0,0,0.14)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)"; }}
+                style={{
+                  display: "block",
+                  borderRadius: 16,
+                  overflow: "hidden",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+                  transition: "transform .3s ease, box-shadow .3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.boxShadow = "0 16px 36px rgba(0,0,0,0.14)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)";
+                }}
               >
-              <img src={o.src} alt={o.alt} loading="lazy" style={{ width: "100%", height: "auto", display: "block" }} />
+                <img
+                  src={o.src}
+                  alt={o.alt}
+                  loading="lazy"
+                  style={{ width: "100%", height: "500px", display: "block" }}
+                />
               </a>
             ))}
           </div>
@@ -500,9 +685,13 @@ function Index() {
 
       {/* HOW */}
       <section className="how">
-        <div className="section-kicker" data-anim>Simple Process</div>
+        <div className="section-kicker" data-anim>
+          Simple Process
+        </div>
         <h2 className="section-title" data-anim data-anim-delay="1">
-          From enquiry to<br /><em>glowing</em> results.
+          From enquiry to
+          <br />
+          <em>glowing</em> results.
         </h2>
         <div className="how-steps">
           {steps.map((s, i) => (
@@ -515,12 +704,12 @@ function Index() {
         </div>
       </section>
 
-
       {/* TESTIMONIAL */}
       <section className="testimonial">
         <div className="stars">★★★★★</div>
         <blockquote data-anim>
-          "I finally found a clinic in J.P. Nagar that actually listens. Senior Dermatologist Team was thorough, the technology is clearly top-tier, and my skin has genuinely transformed."
+          "I finally found a clinic in J.P. Nagar that actually listens. Senior Dermatologist Team
+          was thorough, the technology is clearly top-tier, and my skin has genuinely transformed."
         </blockquote>
         <cite>Priya R. · Laser Hair Removal & Glass Skin · J.P. Nagar</cite>
         <div className="t-grid">
@@ -539,10 +728,18 @@ function Index() {
         <div className="lead-left">
           <div className="section-kicker">Book Now</div>
           <h2 className="section-title">
-            Start your skin<br /><em>transformation</em> today.
+            Start your skin
+            <br />
+            <em>transformation</em> today.
           </h2>
-          <p>Book your free, no-obligation skin consultation with our Senior Dermatologist Team. Walk away with a personalized treatment plan — whether or not you book a service.</p>
-          <p>Fill in the form and our team will confirm your free consultation slot within a few hours. No obligation, no pressure — just great skin ahead.</p>
+          <p>
+            Book your free, no-obligation skin consultation with our Senior Dermatologist Team. Walk
+            away with a personalized treatment plan — whether or not you book a service.
+          </p>
+          <p>
+            Fill in the form and our team will confirm your free consultation slot within a few
+            hours. No obligation, no pressure — just great skin ahead.
+          </p>
           <div className="perks">
             <div className="perk">Free, personalized skin consultation</div>
             <div className="perk">Expert advice from a certified dermatologist</div>
@@ -558,7 +755,13 @@ function Index() {
           {submitted ? (
             <div style={{ padding: "2rem 0", textAlign: "center" }}>
               <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>✓</div>
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.3rem", color: "var(--charcoal)" }}>
+              <div
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "1.3rem",
+                  color: "var(--charcoal)",
+                }}
+              >
                 Thank you! We'll call you shortly.
               </div>
             </div>
@@ -585,7 +788,9 @@ function Index() {
               <div className="form-group">
                 <label>I'm Interested In</label>
                 <select name="treatment" required defaultValue="">
-                  <option value="" disabled>Select a treatment...</option>
+                  <option value="" disabled>
+                    Select a treatment...
+                  </option>
                   <option>Laser Hair Removal</option>
                   <option>Korean Glass Skin</option>
                   <option>Acne Treatment</option>
@@ -609,9 +814,14 @@ function Index() {
                 {submitting ? "Submitting…" : "Book My Free Consultation →"}
               </button>
               {submitError && (
-                <div style={{ color: "#b00020", fontSize: "0.85rem", marginTop: "0.5rem" }}>{submitError}</div>
+                <div style={{ color: "#b00020", fontSize: "0.85rem", marginTop: "0.5rem" }}>
+                  {submitError}
+                </div>
               )}
-              <div className="form-privacy">🔒 Your details are private and never shared. We'll only contact you to confirm your appointment.</div>
+              <div className="form-privacy">
+                🔒 Your details are private and never shared. We'll only contact you to confirm your
+                appointment.
+              </div>
             </>
           )}
         </form>
@@ -619,9 +829,13 @@ function Index() {
 
       {/* FAQ */}
       <section className="faq">
-        <div className="section-kicker" data-anim>FAQ</div>
+        <div className="section-kicker" data-anim>
+          FAQ
+        </div>
         <h2 className="section-title" data-anim data-anim-delay="1">
-          Common questions<br /><em>answered.</em>
+          Common questions
+          <br />
+          <em>answered.</em>
         </h2>
         <div className="faq-list">
           {faqs.map((f, i) => (
@@ -643,11 +857,20 @@ function Index() {
       {/* FOOTER CTA */}
       <section className="footer-cta">
         <div className="footer-cta-inner">
-          <h2>Ready for your <em>best skin</em> ever?</h2>
-          <p>Join Bengaluru's growing community of D-Tanique clients. Your free consultation is waiting.</p>
+          <h2>
+            Ready for your <em>best skin</em> ever?
+          </h2>
+          <p>
+            Join Bengaluru's growing community of D-Tanique clients. Your free consultation is
+            waiting.
+          </p>
           <div className="footer-cta-btns">
-            <a href="#book" className="btn-gold">Book Free Consultation →</a>
-            <a href="tel:+918884448906" className="btn-outline-white">📞 Call Now</a>
+            <a href="#book" className="btn-gold">
+              Book Free Consultation →
+            </a>
+            <a href="tel:+918884448906" className="btn-outline-white">
+              📞 Call Now
+            </a>
           </div>
         </div>
       </section>
@@ -655,13 +878,12 @@ function Index() {
       <footer className="footer-bar">
         <img src={logo} alt="D'tanique The Derma Clinic" className="footer-logo" loading="lazy" />
         <div className="footer-bar-loc">📍 J.P. Nagar, Bengaluru, Karnataka</div>
-        <a href="tel:+918884448906" className="footer-bar-phone">Call for Appointments</a>
+        <a href="tel:+918884448906" className="footer-bar-phone">
+          Call for Appointments
+        </a>
       </footer>
 
-      <PopupForm
-  isOpen={popupOpen}
-  onClose={() => setPopupOpen(false)}
-/>
+      <PopupForm isOpen={popupOpen} onClose={() => setPopupOpen(false)} />
     </div>
   );
 }
